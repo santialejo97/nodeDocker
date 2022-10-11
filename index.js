@@ -12,4 +12,4 @@ app.listen(process.env.PORT, () => {
     console.log('Corriendo aplicacion servidor PORT: '+ process.env.PORT)
 })
 
-app.use('/', router)
+app.use('/auth', router)
