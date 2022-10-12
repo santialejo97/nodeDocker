@@ -2,14 +2,18 @@
 // require('dotenv').config()
 // const router = require('./routes/auth_router.js')
 import express from "express";
-import * as dotenv from "dotenv"
-import  router  from "./routes/auth_router.js";
-dotenv.config()
+import * as dotenv from "dotenv";
+import router from "./routes/auth_router.js";
+import db from "./db/db_connect.js";
 
-const app = express()
+dotenv.config();
+
+const app = express();
+
+db();
+app.use(express.json());
+app.use("/auth", router);
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log('Corriendo aplicacion servidor PORT: '+ process.env.PORT)
-})
-
-app.use('/auth', router)
+  console.log("Corriendo aplicacion servidor PORT: " + process.env.PORT);
+});
