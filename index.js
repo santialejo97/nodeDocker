@@ -12,6 +12,7 @@ const app = express();
 
 db();
 app.use(express.json());
+
 app.use("/auth", router);
 
 app.listen(process.env.PORT || 3000, () => {

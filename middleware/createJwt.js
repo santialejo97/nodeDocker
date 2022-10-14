@@ -1,7 +1,11 @@
 import { request, response } from "express";
 
-export const createJwt = (req = request, res = response, next) => {
-  console.log("Creando JWT");
+import jwt from "jsonwebtoken";
 
-  next();
+export const createJwt = (id, email) => {
+  const payload = {
+    uuid: id,
+    email,
+  };
+  return jwt.sign(payload, process.env.JWTSECRET, { expiresIn: "24h" });
 };

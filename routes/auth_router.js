@@ -8,6 +8,7 @@ import {
   postLoginUser,
 } from "../controllers/controller_auth/auth-controller.js";
 import { createJwt } from "../middleware/createJwt.js";
+import { validaJWT } from "../middleware/validarJwt.js";
 import { valida_error } from "../middleware/validate_error.js";
 
 const router = Router();
@@ -35,7 +36,7 @@ router.post(
   postLoginUser
 );
 
-router.get("/renew", createJwt, buildJwt);
+router.post("/renew", validaJWT, buildJwt);
 
 // module.exports =  router
 export default router;
