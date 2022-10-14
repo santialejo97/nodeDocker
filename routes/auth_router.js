@@ -6,8 +6,8 @@ import {
   buildJwt,
   postCreateUser,
   postLoginUser,
-} from "../controllers/controller_auth/auth-controller.js";
-import { createJwt } from "../middleware/createJwt.js";
+} from "../controllers/auth-controller.js";
+
 import { validaJWT } from "../middleware/validarJwt.js";
 import { valida_error } from "../middleware/validate_error.js";
 
