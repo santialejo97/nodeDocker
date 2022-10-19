@@ -38,7 +38,11 @@ export const postCreateUser = async (req = request, res = response) => {
 export const postLoginUser = async (req = request, res = response) => {
   const { password, email } = req.body;
   try {
-    const userDB = await User.findOne({ email });
+    const userDB = await User.findOne({ email }).populate([
+      "name",
+      "email",
+      "_id",
+    ]);
     if (!userDB) {
       return res.status(404).json({
         ok: false,
