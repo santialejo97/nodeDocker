@@ -7,7 +7,7 @@ export const getSeed = async (req = request, res = response) => {
   try {
     await User.deleteMany();
     const salt = await bcrypt.genSalt(10);
-    users.map(async (user) => {
+    users.forEach(async (user) => {
       const { password, ...detail } = user;
       password = await bcrypt.hash(password, salt);
       User.create({
