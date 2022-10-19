@@ -7,19 +7,22 @@ export const getSeed = async (req = request, res = response) => {
   try {
     await User.deleteMany();
     const salt = await bcrypt.genSalt(10);
-    users.forEach(async (user) => {
-      const { constraseña, ...detail } = user;
+    console.log(salt);
+    for (const user of users) {
+      const { password, ...detail } = user;
+      const pass = await bcrypt.hash(password, salt);
       User.create({
         ...detail,
-        password: await bcrypt.hash(constraseña, salt),
+        password: pass,
       });
-    });
+    }
 
     res.status(200).json({
       ok: true,
       msg: "Executed seed",
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       ok: false,
       msg: "Error interno del servidor hablar con el administrador",
