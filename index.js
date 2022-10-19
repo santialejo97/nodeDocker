@@ -7,14 +7,14 @@ import auth from "./routes/auth_router.js";
 import db from "./db/db_connect.js";
 import seed from "./routes/seed_router.js";
 import movie from "./routes/movie_router.js";
-import path from "path";
+import cors from "cors";
 
 dotenv.config({
   path: `./.env`,
 });
 
 const app = express();
-
+app.use(cors());
 db();
 app.use(express.json());
 
