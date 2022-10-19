@@ -8,11 +8,10 @@ export const getSeed = async (req = request, res = response) => {
     await User.deleteMany();
     const salt = await bcrypt.genSalt(10);
     users.forEach(async (user) => {
-      const { password, ...detail } = user;
-      password = await bcrypt.hash(password, salt);
+      const { constraseña, ...detail } = user;
       User.create({
         ...detail,
-        password,
+        password: await bcrypt.hash(constraseña, salt),
       });
     });
 
@@ -23,7 +22,7 @@ export const getSeed = async (req = request, res = response) => {
   } catch (error) {
     res.status(500).json({
       ok: false,
-      msg: "Error interno del servidor habalr con el administrador",
+      msg: "Error interno del servidor hablar con el administrador",
     });
   }
 };
