@@ -30,7 +30,7 @@ router.post(
   "/login",
   [
     check("email", "tiene que ser un email valido").isEmail(),
-    check("password").isLength({ min: 8 }),
+    check("password", "tiene que ser una password valido").isLength({ min: 8 }),
     valida_error,
   ],
   postLoginUser
